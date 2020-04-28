@@ -1,0 +1,9 @@
+尽管 Object 是一个具体类，但是设计它主要是为了扩展。它所有的非 final 方法
+（ equals 、 hashCode 、 toString 、 clone 和 finalize ）都有明确的通用约定（general
+contract），因为它们被设计成是要被覆盖（override）的。任何一个类，它在覆盖这些方法
+的时候，都有责任遵守这些通用约定；如果不能做到这一点，其他依赖于这些约定的类（例
+如 HashMap 和 HashSet ）就无法结合该类一起正常运作。
+本章将讲述何时以及如何覆盖这些非 final 的 Object 方法。本章不再讨论 finalize 方法，
+因为第7条已经讨论过这个方法了。而 Comparable.compareTo 虽然不是 Object 的方法，但是
+本章也对它进行讨论，因为它具有类似的特征。
+

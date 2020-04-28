@@ -1,0 +1,10 @@
+从Java 1.5发行版本起，实现Singleton还有第三种方法。只需编写一个包含单个元素的枚举
+类型：
+// Enum singleton - the prefered approach
+public enum Elvis {
+INSTANCE;
+public void leaveTheBuilding() { ... }
+}
+这种方法在功能上与公有方法相近，但是它更加简洁，无偿地提供了序列化机制，绝对防止
+多次实例化，即使在面对复杂的序列化或者反射攻击的时候。虽然这种方法还没有广泛采
+用，但是单元素的枚举类型已经成为实现Singleton的最佳方法。

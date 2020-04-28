@@ -1,0 +1,4 @@
+一个很常见的错误根源在于没有覆盖 hashCode 方法。在每个覆盖了 equals 方法的类中，也
+必须覆盖 hashCode 方法。如果不这样做的话，就会违反 Object.hashcode 的通用约定，从而
+导致该类无法结合所有基于散列的集合一起正常工作，这样的集合包
+括 HashMap 、 HashSet 和 Hashtable 。
