@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>  
+    <bean id = "userDao" class="com.yt.annotation.UserDaoImpl" />  
+    <bean id = "user1Dao" class="com.yt.annotation.User1DaoImpl" />  
+    <bean id = "user2Dao" class="com.yt.annotation.User2DaoImpl" />  
+    <bean id = "userService" class = "com.yt.annotation.UserServiceImpl" />  
+</beans>  
