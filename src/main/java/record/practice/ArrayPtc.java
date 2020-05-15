@@ -11,6 +11,8 @@ import java.util.List;
 public interface ArrayPtc {
 
     /**
+     * 1
+     *
      * 给定一个整数数组 nums 和一个目标值 target，
      * 请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
      *
@@ -28,7 +30,10 @@ public interface ArrayPtc {
     }
 
 
+
     /**
+     * 2
+     *
      * 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，
      * 使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
      *
