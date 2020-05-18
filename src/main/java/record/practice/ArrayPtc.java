@@ -42,7 +42,7 @@ public interface ArrayPtc {
      *  2：转换为上面的两数之和
      *      2.1：找出第一个负数后，剩下数中找相加和为前面负数的正数
      *
-     * @param nums
+     * @param nums     * 使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
      * @return
      */
     default List<List<Integer>> threeSum(int[] nums) {
