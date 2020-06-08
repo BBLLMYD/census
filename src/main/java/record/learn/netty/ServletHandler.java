@@ -7,6 +7,8 @@ import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
 
+import javax.servlet.Servlet;
+
 public class ServletHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
     @Override
