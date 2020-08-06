@@ -16,9 +16,10 @@ public class Printer {
                 System.out.print(is[i]);
                 continue;
             }
-            System.out.print(is[i]+",");
+            System.out.print(is[i]+", ");
         }
         System.out.print("]");
+        System.out.println();
     }
 
 }
