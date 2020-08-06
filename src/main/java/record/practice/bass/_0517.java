@@ -1,4 +1,4 @@
-package record.practice.everyday;
+package record.practice.bass;
 
 import java.util.LinkedList;
 import java.util.Queue;
