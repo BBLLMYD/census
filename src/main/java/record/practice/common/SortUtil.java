@@ -5,4 +5,9 @@ package record.practice.common;
  * @create 2020-05-15-16:58
  */
 public class SortUtil {
+
+    public static void main(String[] args) {
+
+    }
+
 }
