@@ -9,13 +9,13 @@ import java.util.PriorityQueue;
  * @author mqw
  * @create 2020-08-06-17:26
  */
-public class KthLargest {
+public class QueueKthLargest {
 
     @Getter
     PriorityQueue<Integer> q;
     int k;
 
-    public KthLargest(int[] array, int k) {
+    public QueueKthLargest(int[] array, int k) {
         this.k = k;
         q = new PriorityQueue<>(k);
         for (int i : array) {
@@ -34,7 +34,7 @@ public class KthLargest {
 
     public static void main(String[] args) {
         int[] build = ArrayBuilder.build(20);
-        KthLargest kthLargest = new KthLargest(build, 3);
+        QueueKthLargest kthLargest = new QueueKthLargest(build, 3);
         PriorityQueue<Integer> q = kthLargest.getQ();
         System.out.println(kthLargest.getQ());
 
