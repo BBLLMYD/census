@@ -1,20 +1,16 @@
 package record.learn.pthread.lock;
 
+
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.RecursiveTask;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.LockSupport;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.*;
 
 public class RLock {
 
 	static Lock lock1 = new ReentrantLock();
 	static Condition newCondition1 = lock1.newCondition();
+	static Condition newCondition2 = lock1.newCondition();
 	static Lock lock2 = new ReentrantLock();
 
 	
@@ -33,27 +29,27 @@ public class RLock {
 		t2.interrupt();*/
 		
 		//死锁
-		Thread t1 = new Thread(new T3(lock1,lock2),"cenos__");
-		Thread t2 = new Thread(new T3(lock2,lock1),"zoiua__");
-		t1.start();
-		t2.start();
+//		Thread t1 = new Thread(new T3(lock1,lock2),"cenos__");
+//		Thread t2 = new Thread(new T3(lock2,lock1),"zoiua__");
+//		t1.start();
+//		t2.start();
 		
 		//Condition	
 		//condition.await()释放锁,Object.wait()释放锁,Thread.sleep()不释放锁,Object.notify/all()同步代码块执行完释放锁,
-		/*Thread t1 = new Thread(new T5());
-		t1.start();
-		Thread.sleep(900);
-		lock1.lock();
-		System.out.println("I am main");
-		newCondition1.signal();
-		lock1.unlock();*/
+//		Thread t1 = new Thread(new T5());
+//		t1.start();
+//		Thread.sleep(900);
+//		lock1.lock();
+//		System.out.println("I am main");
+//		newCondition1.signal();
+//		lock1.unlock();
 		
 		//信号量902328
-		/*ExecutorService pool = Executors.newFixedThreadPool(20);
-		final SemapDemo semapDemo = new SemapDemo();
-		for(int i = 0 ; i < 20 ; i++){
-			pool.submit(semapDemo);
-		}*/
+//		ExecutorService pool = Executors.newFixedThreadPool(20);
+//		final SemapDemo semapDemo = new SemapDemo();
+//		for(int i = 0 ; i < 20 ; i++){
+//			pool.submit(semapDemo);
+//		}
 		
 		//forkjoinpool
 		/*ForkJoinPool pool = new ForkJoinPool();
@@ -78,55 +74,49 @@ public class RLock {
 //		t2.join();
 		
 		//CyclicBarrierr
-		/*int n = 10;
-		Thread[] allSoldiers = new Thread[n];
-		boolean flag = false;
-		CyclicBarrier cyclic = new CyclicBarrier(n,new BarrierRun(flag, n));
-		System.out.println("集合队伍！");
-		for(int i = 0; i< n ;i++){
-			System.out.println("士兵"+i+"报道");
-			allSoldiers[i] = new Thread(new CyclicBarrierrDemo("士兵"+i, cyclic));
-			allSoldiers[i].start();
-			if(i==100){allSoldiers[0].interrupt();}
-		}*/
+//		int n = 10;
+//		Thread[] allSoldiers = new Thread[n];
+//		boolean flag = false;
+//		CyclicBarrier cyclic = new CyclicBarrier(n,new BarrierRun(flag, n));
+//		System.out.println("集合队伍！");
+//		for(int i = 0; i< n ;i++){
+//			System.out.println("士兵"+i+"报道");
+//			allSoldiers[i] = new Thread(new CyclicBarrierrDemo("士兵"+i, cyclic));
+//			allSoldiers[i].start();
+//			if(i==100){allSoldiers[0].interrupt();}
+//		}
 		
 		//CountDownLatch
-		/*ExecutorService pool = Executors.newFixedThreadPool(7);
-		CountDownLatchDemo demo = new CountDownLatchDemo();
-		for(int i = 0 ; i < 7 ; i++){
-			pool.submit(demo);
-		}
-		CountDownLatchDemo.countDownLatch.await();
-		System.out.println("fire!!");
-		pool.shutdown();*/
+//		ExecutorService pool = Executors.newFixedThreadPool(7);
+//		CountDownLatchDemo demo = new CountDownLatchDemo();
+//		for(int i = 0 ; i < 7 ; i++){
+//			pool.submit(demo);
+//		}
+//		CountDownLatchDemo.countDownLatch.await();
+//		System.out.println("fire!!");
+//		pool.shutdown();
 		
 		//ReadWriteLock
-		/*final Lock lock = new ReentrantLock();
+		final Lock lock = new ReentrantLock();
 		ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 		final ReadWriteLockDemo demo = new ReadWriteLockDemo();
-		final ReadLock readLock = readWriteLock.readLock();
-		final WriteLock writeLock = readWriteLock.writeLock();
-		Runnable readRunnable = new Runnable() {
-			@Override
-			public void run() {
-				demo.handleRead(readLock);
+		final ReentrantReadWriteLock.ReadLock readLock = readWriteLock.readLock();
+		final ReentrantReadWriteLock.WriteLock writeLock = readWriteLock.writeLock();
+		Runnable readRunnable = () -> {
+			demo.handleRead(readLock);
 //				demo.handleRead(lock);
-			}
 		};
-		Runnable writeRunnable = new Runnable() {
-			@Override
-			public void run() {
-				demo.handleWrite(writeLock, new Random().nextInt());
+		Runnable writeRunnable = () -> {
+			demo.handleWrite(writeLock, new Random().nextInt());
 //				demo.handleWrite(lock, new Random().nextInt());
-			}
-		};*/
+		};
 		 
-		/*for(int i=0; i< 18; i++){
+		for(int i=0; i< 18; i++){
 			new Thread(readRunnable).start();
 		}
 		for(int i=18; i< 20; i++){
 			new Thread(writeRunnable).start();
-		}*/
+		}
 	}
 
 	static class ReadWriteLockDemo {
@@ -292,6 +282,7 @@ public class RLock {
 		public void run() {
 			try{
 				semo.acquire();
+				// 申请许可后阻塞，等待数量到目标permits
 				System.out.println(Thread.currentThread().getId()+"done!!");
 //				Thread.sleep(2000+new Random().nextInt(2000));
 				Thread.sleep(2000);

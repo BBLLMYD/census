@@ -7,29 +7,21 @@ import java.util.concurrent.locks.ReentrantLock;
 public class TestCondition {
 	public static void main(String[] args) {
 		final Alertnate alertnate = new Alertnate();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				for(int i=0 ;i<=20; i++){
-					alertnate.loopA(i);
-				}
+		new Thread(() -> {
+			for(int i=0 ;i<=20; i++){
+				alertnate.loopA(i);
 			}
 		},"A").start();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				for(int i=0 ;i<=20; i++){
-					alertnate.loopB(i);
-				}
+
+		new Thread(() -> {
+			for(int i=0 ;i<=20; i++){
+				alertnate.loopB(i);
 			}
 		},"B").start();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				for(int i=0 ;i<=20; i++){
-					alertnate.loopC(i);
-					System.out.println("-  -  -  -  -  -");
-				}
+		new Thread(() -> {
+			for(int i=0 ;i<=20; i++){
+				alertnate.loopC(i);
+				System.out.println("-  -  -  -  -  -");
 			}
 		},"C").start();
 	}
