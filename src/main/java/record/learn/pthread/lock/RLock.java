@@ -97,26 +97,26 @@ public class RLock {
 //		pool.shutdown();
 		
 		//ReadWriteLock
-		final Lock lock = new ReentrantLock();
-		ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-		final ReadWriteLockDemo demo = new ReadWriteLockDemo();
-		final ReentrantReadWriteLock.ReadLock readLock = readWriteLock.readLock();
-		final ReentrantReadWriteLock.WriteLock writeLock = readWriteLock.writeLock();
-		Runnable readRunnable = () -> {
-			demo.handleRead(readLock);
-//				demo.handleRead(lock);
-		};
-		Runnable writeRunnable = () -> {
-			demo.handleWrite(writeLock, new Random().nextInt());
-//				demo.handleWrite(lock, new Random().nextInt());
-		};
-		 
-		for(int i=0; i< 18; i++){
-			new Thread(readRunnable).start();
-		}
-		for(int i=18; i< 20; i++){
-			new Thread(writeRunnable).start();
-		}
+//		final Lock lock = new ReentrantLock();
+//		ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+//		final ReadWriteLockDemo demo = new ReadWriteLockDemo();
+//		final ReentrantReadWriteLock.ReadLock readLock = readWriteLock.readLock();
+//		final ReentrantReadWriteLock.WriteLock writeLock = readWriteLock.writeLock();
+//		Runnable readRunnable = () -> {
+//			demo.handleRead(readLock);
+////				demo.handleRead(lock);
+//		};
+//		Runnable writeRunnable = () -> {
+//			demo.handleWrite(writeLock, new Random().nextInt());
+////				demo.handleWrite(lock, new Random().nextInt());
+//		};
+//
+//		for(int i=0; i< 18; i++){
+//			new Thread(readRunnable).start();
+//		}
+//		for(int i=18; i< 20; i++){
+//			new Thread(writeRunnable).start();
+//		}
 	}
 
 	static class ReadWriteLockDemo {
