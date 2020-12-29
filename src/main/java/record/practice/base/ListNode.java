@@ -11,8 +11,8 @@ import lombok.ToString;
 @ToString
 public class ListNode {
 
-    Integer val;
-    ListNode next;
+    public Integer val;
+    public ListNode next;
 
     public ListNode(int x) { val = x; }
 
