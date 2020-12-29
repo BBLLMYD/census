@@ -9,9 +9,9 @@ import record.practice.base.ListNode;
 public class Test {
 
     public static void main(String[] args) {
-        char[] chars = "没人比我更懂Java".toCharArray();
-        System.out.println(chars.length);
-        System.out.println("没人比我更懂java".getBytes().length);
+//        char[] chars = "没人比我更懂Java".toCharArray();
+//        System.out.println(chars.length);
+//        System.out.println("没人比我更懂java".getBytes().length);
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(1);
         ListNode node3 = new ListNode(2);
@@ -24,7 +24,7 @@ public class Test {
         node4.setNext(node5);
         node5.setNext(node6);
         System.out.println(node1);
-        ListNode node = deleteDuplicates(node1);
+        ListNode node = removeElements(node1,3);
         System.out.println(node);
     }
 
@@ -93,5 +93,32 @@ public class Test {
             pB = pB.getNext() == null? headA:pB.getNext();
         }
         return pA;
+    }
+
+    /**
+     * 删除链表中等于给定值 val 的所有节点。
+     *
+     * 示例:
+     *
+     * 输入: 1->2->6->3->4->5->6, val = 6
+     * 输出: 1->2->3->4->5
+     */
+    public static ListNode removeElements(ListNode head, int val) {
+        if(head == null){
+            return null;
+        }
+        ListNode s = new ListNode(-1);
+        s.next = head;
+        ListNode concurrent = head;
+        ListNode pre = s;
+        while (concurrent!=null){
+            if(concurrent.val == val){
+                pre.next = concurrent.next;
+            }else {
+                pre = concurrent;
+            }
+            concurrent = concurrent.next;
+        }
+        return s.next;
     }
 }
