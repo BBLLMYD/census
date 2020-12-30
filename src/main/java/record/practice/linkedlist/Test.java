@@ -13,19 +13,21 @@ public class Test {
 //        System.out.println(chars.length);
 //        System.out.println("没人比我更懂java".getBytes().length);
         ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(1);
-        ListNode node3 = new ListNode(2);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
         ListNode node4 = new ListNode(3);
-        ListNode node5 = new ListNode(4);
-        ListNode node6 = new ListNode(4);
+        ListNode node5 = new ListNode(2);
+        ListNode node6 = new ListNode(2);
         node1.setNext(node2);
         node2.setNext(node3);
         node3.setNext(node4);
         node4.setNext(node5);
         node5.setNext(node6);
-        System.out.println(node1);
-        ListNode node = removeElements(node1,3);
-        System.out.println(node);
+//        System.out.println(node1);
+//        ListNode node = removeElements(node1,3);
+//        System.out.println(node);
+        System.out.println(isPalindrome(node1));
+
     }
 
     /**
@@ -120,5 +122,59 @@ public class Test {
             concurrent = concurrent.next;
         }
         return s.next;
+    }
+
+
+    /**
+     * 请判断一个链表是否为回文链表。
+     *
+     * 示例 1:
+     *
+     * 输入: 1->2
+     * 输出: false
+     * 示例 2:
+     *
+     * 输入: 1->2->2->1
+     * 输出: true
+     *
+     * @param head
+     * @return
+     */
+    public static boolean isPalindrome(ListNode head) {
+        if(head == null || head.next == null){
+            return true;
+        }
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        ListNode pre = null, newHead = null;
+        ListNode curr = slow ;
+        // 反转
+        while(curr!=null){
+            ListNode next = curr.next;
+            if(next == null){
+                // 需要保留新的头节点，以遍历
+                newHead = curr;
+            }
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+
+        // 判断两段链表
+        while (newHead!=null){
+            Integer val = newHead.val;
+            Integer val1 = head.val;
+            if(!val.equals(val1)){
+                return false;
+            }
+            newHead = newHead.next;
+            head = head.next;
+        }
+        return true;
     }
 }
