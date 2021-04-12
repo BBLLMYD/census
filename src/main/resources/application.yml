@@ -1,0 +1,7 @@
+
+server:
+  port: 2023
+  tomcat:
+    max-threads: 1500
+    max-connections: 20000
+
