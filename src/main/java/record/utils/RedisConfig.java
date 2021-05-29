@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import record.utils.gzip.CustomizedGzipRedisTemplate;
+
 /**
  * @author mengqingwen <mengqingwen@kuaishou.com>
  * Created on 2021-04-15
@@ -39,6 +41,11 @@ public class RedisConfig {
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;
+    }
+
+    @Bean
+    public CustomizedGzipRedisTemplate gzipRedisTemplate(RedisConnectionFactory connectionFactory) {
+        return new CustomizedGzipRedisTemplate(connectionFactory);
     }
 
 }
