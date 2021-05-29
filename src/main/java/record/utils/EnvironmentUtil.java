@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-/**
- * @author laiwenchao <laiwenchao@kuaishou.com>
- * Created on 2020-08-25
- */
+
 @Component
 public class EnvironmentUtil {
 
